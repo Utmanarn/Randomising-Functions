@@ -33,13 +33,10 @@ public class PRNGAlgorithms : MonoBehaviour
         {
             case Type.ComputerTicks:
                 return ComputerTicksMethod(diceToRoll);
-                break;
             case Type.LinearCongruential:
                 return LinearCongruentialMethod(diceToRoll);
-                break;
             case Type.MiddleSquare:
                 return MiddleSquareMethod(diceToRoll);
-                break;
         }
 
         return null;
@@ -57,15 +54,21 @@ public class PRNGAlgorithms : MonoBehaviour
             seed = DateTime.Now.Ticks;
             //Debug.Log(seed); 
 
+            for (int i = 0; i < diceToRoll; i++)
+            {
+                randomNumbers[i] = int.Parse(seed.ToString().Substring(17 - i, 1));
+            }
+
+            /*
             randomNumbers[0] = int.Parse(seed.ToString().Substring(17, 1));
             randomNumbers[1] = int.Parse(seed.ToString().Substring(16, 1));
             randomNumbers[2] = int.Parse(seed.ToString().Substring(15, 1));
             randomNumbers[3] = int.Parse(seed.ToString().Substring(14, 1));
-            randomNumbers[4] = int.Parse(seed.ToString().Substring(13, 1));
+            randomNumbers[4] = int.Parse(seed.ToString().Substring(13, 1));*/
 
             safetyCount++;
 
-        } while (randomNumbers.Contains(0) || randomNumbers.Contains(7) || randomNumbers.Contains(8) || randomNumbers.Contains(9) && safetyCount < 1000);
+        } while (randomNumbers.Contains(0) || randomNumbers.Contains(7) || randomNumbers.Contains(8) || randomNumbers.Contains(9));
         
 
         for (int i = 0; i < randomNumbers.Length; i++)
