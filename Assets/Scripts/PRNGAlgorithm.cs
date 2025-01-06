@@ -4,8 +4,17 @@ using System.Linq;
 
 public class PRNGAlgorithms : MonoBehaviour
 {
+    [SerializeField] private Type type = new Type();
+
     long baseSeed;
     int amountOfNumbers = 5;
+
+    enum Type
+    {
+        ComputerTicks,
+        LinearCongruential,
+        MiddleSquare
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,18 +27,37 @@ public class PRNGAlgorithms : MonoBehaviour
 
         Debug.Log(baseSeed);
 
-        GetRandomLinearCongruential();
-        GetRandomMiddleSquare();
-        ComputerTicks();
+        switch (type)
+        {
+            case Type.ComputerTicks:
+                ComputerTicksMethod();
+                break;
+            case Type.LinearCongruential:
+                LinearCongruentialMethod();
+                break;
+            case Type.MiddleSquare:
+                MiddleSquareMethod();
+                break;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChooseAlgorithm()
     {
-        
+        switch (type)
+        {
+            case Type.ComputerTicks:
+                ComputerTicksMethod();
+                break;
+            case Type.LinearCongruential:
+                LinearCongruentialMethod();
+                break;
+            case Type.MiddleSquare:
+                MiddleSquareMethod();
+                break;
+        }
     }
 
-    void ComputerTicks()
+    public void ComputerTicksMethod()
     {
         long seed;
         int[] randomNumbers = new int[amountOfNumbers];
@@ -60,7 +88,7 @@ public class PRNGAlgorithms : MonoBehaviour
         Debug.Log(allRandomNumbers);
     }
 
-    void GetRandomLinearCongruential()
+    public void LinearCongruentialMethod()
     {
         long seed = baseSeed;
 
@@ -102,7 +130,7 @@ public class PRNGAlgorithms : MonoBehaviour
         Debug.Log(allRandomNumbers);
     }
 
-    void GetRandomMiddleSquare()
+    public void MiddleSquareMethod()
     {
         long seed = baseSeed;
 
