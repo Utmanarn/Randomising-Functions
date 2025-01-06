@@ -10,6 +10,7 @@ public class DiceHand : MonoBehaviour
 
     private void Awake()
     {
+        _pRNGAlgorithms = GetComponent<PRNGAlgorithms>();
         dice = new int[5];
     }
 
@@ -25,10 +26,7 @@ public class DiceHand : MonoBehaviour
 
     private void RollAllDice()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            dice[i] = Random.Range(1, 7);
-        }
+        dice = _pRNGAlgorithms.LinearCongruentialMethod(5);
 
         if (_debugLogging)
         {
@@ -40,12 +38,16 @@ public class DiceHand : MonoBehaviour
     {
         if (_debugLogging) Debug.Log("Dice Positions to Roll lenght: " + dicePositionsToRoll.Length);
 
+        int[] randomNumbersRolled = _pRNGAlgorithms.LinearCongruentialMethod(dicePositionsToRoll.Length);
+
+        
         for (int i = 0; i < dicePositionsToRoll.Length; i++)
         {
-            dice[dicePositionsToRoll[i]] = Random.Range(1, 7);
+            dice[dicePositionsToRoll[i]] = randomNumbersRolled[i];
 
             if (_debugLogging) Debug.Log("Dice position " + dicePositionsToRoll[i] + " is being re-rolled.");
         }
+        
 
         if (_debugLogging)
         {
