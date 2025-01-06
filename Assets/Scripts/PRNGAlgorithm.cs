@@ -7,7 +7,6 @@ public class PRNGAlgorithms : MonoBehaviour
     [SerializeField] private Type type = new Type();
 
     long baseSeed;
-    int amountOfNumbers = 5;
 
     enum Type
     {
@@ -94,7 +93,7 @@ public class PRNGAlgorithms : MonoBehaviour
         //Array that will store the random numbers so we can display them
         int[] randomNumbers = new int[diceToRoll];
 
-        for (int i = 0; i < amountOfNumbers; i++)
+        for (int i = 0; i < diceToRoll; i++)
         {
             int safetyCount = 0;
             do
@@ -133,7 +132,7 @@ public class PRNGAlgorithms : MonoBehaviour
         //Array that will store the random numbers so we can display them
         int[] randomNumbers = new int[diceToRoll];
 
-        for (int i = 0; i < amountOfNumbers; i++)
+        for (int i = 0; i < diceToRoll; i++)
         {
             int safetyCount = 0;
             do
