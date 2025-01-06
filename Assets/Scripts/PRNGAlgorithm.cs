@@ -26,41 +26,30 @@ public class PRNGAlgorithms : MonoBehaviour
         baseSeed = long.Parse(shortenSeed);
 
         Debug.Log(baseSeed);
-
-        switch (type)
-        {
-            case Type.ComputerTicks:
-                ComputerTicksMethod();
-                break;
-            case Type.LinearCongruential:
-                LinearCongruentialMethod();
-                break;
-            case Type.MiddleSquare:
-                MiddleSquareMethod();
-                break;
-        }
     }
 
-    public void ChooseAlgorithm()
+    public int[] ChooseAlgorithm(int diceToRoll)
     {
         switch (type)
         {
             case Type.ComputerTicks:
-                ComputerTicksMethod();
+                return ComputerTicksMethod(diceToRoll);
                 break;
             case Type.LinearCongruential:
-                LinearCongruentialMethod();
+                return LinearCongruentialMethod(diceToRoll);
                 break;
             case Type.MiddleSquare:
-                MiddleSquareMethod();
+                return MiddleSquareMethod(diceToRoll);
                 break;
         }
+
+        return null;
     }
 
-    public void ComputerTicksMethod()
+    public int[] ComputerTicksMethod(int diceToRoll)
     {
         long seed;
-        int[] randomNumbers = new int[amountOfNumbers];
+        int[] randomNumbers = new int[diceToRoll];
         string allRandomNumbers = "";
         int safetyCount = 0;
      
@@ -85,10 +74,10 @@ public class PRNGAlgorithms : MonoBehaviour
             allRandomNumbers += randomNumbers[i] + " ";
         }
 
-        Debug.Log(allRandomNumbers);
+        return randomNumbers;
     }
 
-    public void LinearCongruentialMethod()
+    public int[] LinearCongruentialMethod(int diceToRoll)
     {
         long seed = baseSeed;
 
@@ -103,7 +92,7 @@ public class PRNGAlgorithms : MonoBehaviour
         string allRandomNumbers = "";
 
         //Array that will store the random numbers so we can display them
-        float[] randomNumbers = new float[amountOfNumbers];
+        int[] randomNumbers = new int[diceToRoll];
 
         for (int i = 0; i < amountOfNumbers; i++)
         {
@@ -115,7 +104,7 @@ public class PRNGAlgorithms : MonoBehaviour
 
                 //To get a value between 0 and 1
                 //float randomValue = seed / (float)m;
-                float randomValue = Mathf.Floor((seed / (float)m) * 10);
+                int randomValue = Mathf.RoundToInt(Mathf.Floor((seed / (float)m) * 10));
 
                 randomNumbers[i] = randomValue;
                 safetyCount++;
@@ -127,10 +116,10 @@ public class PRNGAlgorithms : MonoBehaviour
             allRandomNumbers += randomNumbers[i] + " ";
         }
 
-        Debug.Log(allRandomNumbers);
+        return randomNumbers;
     }
 
-    public void MiddleSquareMethod()
+    public int[] MiddleSquareMethod(int diceToRoll)
     {
         long seed = baseSeed;
 
@@ -142,7 +131,7 @@ public class PRNGAlgorithms : MonoBehaviour
         string allRandomNumbers = "";
 
         //Array that will store the random numbers so we can display them
-        float[] randomNumbers = new float[amountOfNumbers];
+        int[] randomNumbers = new int[diceToRoll];
 
         for (int i = 0; i < amountOfNumbers; i++)
         {
@@ -172,7 +161,7 @@ public class PRNGAlgorithms : MonoBehaviour
                 //If we want a float between 0 and 1 we divide the maximum number with 9999 if we have 4 digits
                 float divisor = (Mathf.Pow(10f, digits - 1)) - 1f;
 
-                float randomValue = Mathf.Floor(seed / divisor);
+                int randomValue = Mathf.RoundToInt(Mathf.Floor(seed / divisor));
 
                 randomNumbers[i] = randomValue;
                 safetyCount++;
@@ -185,6 +174,6 @@ public class PRNGAlgorithms : MonoBehaviour
             allRandomNumbers += randomNumbers[i] + " ";
         }
 
-        Debug.Log(allRandomNumbers);
+        return randomNumbers;
     }
 }
