@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameLogic : MonoBehaviour
 {
     private DiceHand _playerHand;
     [SerializeField] private Button _rollButton;
+    [SerializeField] private TMP_Dropdown _selectScoreMenu;
 
     private bool[] _diceSelected;
 
@@ -22,6 +24,13 @@ public class GameLogic : MonoBehaviour
     public void SelectDice(int diceSelected)
     {
         _diceSelected[diceSelected] = !_diceSelected[diceSelected];
+    }
+
+    public void SelectScore() // TODO: Change this to use the ClickHandler that was implemented on every item in the dropdown!
+    {
+        //int value = _selectScoreMenu.value;
+
+        //_selectScoreMenu.options.RemoveAt(value);
     }
 
     public void DebugWriteSelectedToConsole()
