@@ -3,7 +3,7 @@ using UnityEngine;
 public class DiceHand : MonoBehaviour
 {
     private PRNGAlgorithms _pRNGAlgorithms;
-    private int[] dice;
+    private int[] _dice;
 
     [SerializeField] private bool _debugLogging;
     [SerializeField] private bool _debugTesting;
@@ -11,7 +11,7 @@ public class DiceHand : MonoBehaviour
     private void Awake()
     {
         _pRNGAlgorithms = GetComponent<PRNGAlgorithms>();
-        dice = new int[5];
+        _dice = new int[5];
     }
 
     private void Start()
@@ -26,11 +26,11 @@ public class DiceHand : MonoBehaviour
 
     private void RollAllDice()
     {
-        dice = _pRNGAlgorithms.LinearCongruentialMethod(5);
+        _dice = _pRNGAlgorithms.LinearCongruentialMethod(5);
 
         if (_debugLogging)
         {
-            Debug.Log("The dice numbers are: " + dice[0] + " " + dice[1] + " " + dice[2] + " " + dice[3] + " " + dice[4]);
+            Debug.Log("The dice numbers are: " + _dice[0] + " " + _dice[1] + " " + _dice[2] + " " + _dice[3] + " " + _dice[4]);
         }
     }
 
@@ -43,7 +43,7 @@ public class DiceHand : MonoBehaviour
         
         for (int i = 0; i < dicePositionsToRoll.Length; i++)
         {
-            dice[dicePositionsToRoll[i]] = randomNumbersRolled[i];
+            _dice[dicePositionsToRoll[i]] = randomNumbersRolled[i];
 
             if (_debugLogging) Debug.Log("Dice position " + dicePositionsToRoll[i] + " is being re-rolled.");
         }
@@ -51,7 +51,7 @@ public class DiceHand : MonoBehaviour
 
         if (_debugLogging)
         {
-            Debug.Log("The dice numbers are: " + dice[0] + " " + dice[1] + " " + dice[2] + " " + dice[3] + " " + dice[4]);
+            Debug.Log("The dice numbers are: " + _dice[0] + " " + _dice[1] + " " + _dice[2] + " " + _dice[3] + " " + _dice[4]);
         }
     }
 }
