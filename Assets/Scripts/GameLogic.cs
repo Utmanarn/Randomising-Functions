@@ -26,7 +26,7 @@ public class GameLogic : MonoBehaviour
         _diceSelected[diceSelected] = !_diceSelected[diceSelected];
     }
 
-    public void SelectScore() // TODO: Change this to use the ClickHandler that was implemented on every item in the dropdown!
+    public void SelectScore(string itemName) // TODO: Change this to use the ClickHandler that was implemented on every item in the dropdown!
     {
         //int value = _selectScoreMenu.value;
 
