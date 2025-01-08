@@ -18,17 +18,18 @@ public class PRNGAlgorithms : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    }
+
+    public int[] ChooseAlgorithm(int diceToRoll)
+    {
         long dateTime = DateTime.Now.Ticks;
 
         string shortenSeed = dateTime.ToString().Substring(8);
 
         baseSeed = long.Parse(shortenSeed);
 
-        Debug.Log(baseSeed);
-    }
+        Debug.Log("Seed: " + baseSeed);
 
-    public int[] ChooseAlgorithm(int diceToRoll)
-    {
         switch (type)
         {
             case Type.ComputerTicks:
@@ -52,19 +53,11 @@ public class PRNGAlgorithms : MonoBehaviour
         do
         {
             seed = DateTime.Now.Ticks;
-            //Debug.Log(seed); 
 
             for (int i = 0; i < diceToRoll; i++)
             {
                 randomNumbers[i] = int.Parse(seed.ToString().Substring(17 - i, 1));
             }
-
-            /*
-            randomNumbers[0] = int.Parse(seed.ToString().Substring(17, 1));
-            randomNumbers[1] = int.Parse(seed.ToString().Substring(16, 1));
-            randomNumbers[2] = int.Parse(seed.ToString().Substring(15, 1));
-            randomNumbers[3] = int.Parse(seed.ToString().Substring(14, 1));
-            randomNumbers[4] = int.Parse(seed.ToString().Substring(13, 1));*/
 
             safetyCount++;
 
@@ -127,7 +120,6 @@ public class PRNGAlgorithms : MonoBehaviour
 
         //How many digits in the seed?
         int digits = seed.ToString().Length;
-        Debug.Log(digits);
 
         //To display the random numbers when the loop is finished
         string allRandomNumbers = "";
