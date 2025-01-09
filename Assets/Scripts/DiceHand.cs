@@ -16,6 +16,7 @@ public class DiceHand : MonoBehaviour
 
     private bool playerOneTurn;
 
+
     [SerializeField] private Button dice1;
     [SerializeField] private Button dice2;
     [SerializeField] private Button dice3;
@@ -28,6 +29,9 @@ public class DiceHand : MonoBehaviour
     [SerializeField] private TMP_Text number4;
     [SerializeField] private TMP_Text number5;
 
+    [SerializeField] private TMP_Text playerOne;
+    [SerializeField] private TMP_Text playerTwo;
+
     private void Awake()
     {
         _pRNGAlgorithms = GetComponent<PRNGAlgorithms>();
@@ -35,8 +39,9 @@ public class DiceHand : MonoBehaviour
         _dice = new int[5];
         reRoll = new List<int>();
         numberOfRolls = 3;
-        playerOneTurn = true;
 
+        playerOneTurn = true;
+        playerOne.color = Color.red;
         Debug.Log("Player Ones's Turn");
     }
 
@@ -68,12 +73,15 @@ public class DiceHand : MonoBehaviour
             if(playerOneTurn == true)
             {
                 playerOneTurn = false;
-
+                playerOne.color = Color.white;
+                playerTwo.color = Color.red;
                 Debug.Log("Player Two's Turn");
             } 
             else
             {
                 playerOneTurn = true;
+                playerOne.color = Color.red;
+                playerTwo.color = Color.white;
                 Debug.Log("Player Ones's Turn");
             }
         }

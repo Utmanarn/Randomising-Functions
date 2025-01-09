@@ -460,6 +460,8 @@ MonoBehaviour:
   number3: {fileID: 1213890388}
   number4: {fileID: 1240841204}
   number5: {fileID: 26248593}
+  playerOne: {fileID: 1921959936}
+  playerTwo: {fileID: 1336564587}
 --- !u!114 &112661482
 MonoBehaviour:
   m_ObjectHideFlags: 0
