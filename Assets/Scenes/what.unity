@@ -450,13 +450,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd01cfec82ec52469e304a36540fd96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugLogging: 1
-  _debugTesting: 1
   dice1: {fileID: 840407424}
   dice2: {fileID: 336437743}
   dice3: {fileID: 1271307694}
   dice4: {fileID: 1156467193}
   dice5: {fileID: 1990537340}
+  number1: {fileID: 1023038045}
+  number2: {fileID: 960693251}
+  number3: {fileID: 1213890388}
+  number4: {fileID: 1240841204}
+  number5: {fileID: 26248593}
 --- !u!114 &112661482
 MonoBehaviour:
   m_ObjectHideFlags: 0

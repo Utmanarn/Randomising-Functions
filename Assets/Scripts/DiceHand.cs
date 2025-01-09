@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Unity.UI;
 using UnityEngine.UI;
+using TMPro;
 
 public class DiceHand : MonoBehaviour
 {
@@ -13,14 +14,19 @@ public class DiceHand : MonoBehaviour
     private List<int> reRoll;
     private int numberOfRolls;
 
-    [SerializeField] private bool _debugLogging;
-    [SerializeField] private bool _debugTesting;
+    private bool playerOneTurn;
 
     [SerializeField] private Button dice1;
     [SerializeField] private Button dice2;
     [SerializeField] private Button dice3;
     [SerializeField] private Button dice4;
     [SerializeField] private Button dice5;
+
+    [SerializeField] private TMP_Text number1;
+    [SerializeField] private TMP_Text number2;
+    [SerializeField] private TMP_Text number3;
+    [SerializeField] private TMP_Text number4;
+    [SerializeField] private TMP_Text number5;
 
     private void Awake()
     {
@@ -29,12 +35,9 @@ public class DiceHand : MonoBehaviour
         _dice = new int[5];
         reRoll = new List<int>();
         numberOfRolls = 3;
-    }
+        playerOneTurn = true;
 
-    private void Start()
-    {
-        if (!_debugTesting) return;
-        RollAllDice();
+        Debug.Log("Player Ones's Turn");
     }
 
     public void Roll()
@@ -48,11 +51,31 @@ public class DiceHand : MonoBehaviour
             RollAllDice();
         }
 
+        number1.text = _dice[0].ToString();
+        number2.text = _dice[1].ToString();
+        number3.text = _dice[2].ToString();
+        number4.text = _dice[3].ToString();
+        number5.text = _dice[4].ToString();
+
+        Debug.Log("Dice Rolled: " + _dice[0] + " " + _dice[1] + " " + _dice[2] + " " + _dice[3] + " " + _dice[4]);
+
         numberOfRolls--;
 
         if(numberOfRolls < 1)
         {
             numberOfRolls = 3;
+
+            if(playerOneTurn == true)
+            {
+                playerOneTurn = false;
+
+                Debug.Log("Player Two's Turn");
+            } 
+            else
+            {
+                playerOneTurn = true;
+                Debug.Log("Player Ones's Turn");
+            }
         }
     }
 
@@ -117,30 +140,16 @@ public class DiceHand : MonoBehaviour
     private void RollAllDice()
     {
         _dice = _pRNGAlgorithms.ChooseAlgorithm(5);
-
-        if (_debugLogging)
-        {
-            Debug.Log("The dice numbers are: " + _dice[0] + " " + _dice[1] + " " + _dice[2] + " " + _dice[3] + " " + _dice[4]);
-        }
     }
 
     private void RollSelectedDice(List<int> dicePositionsToRoll)
     {
-        if (_debugLogging) Debug.Log("Dice Positions to Roll lenght: " + dicePositionsToRoll.Count);
 
         int[] randomNumbersRolled = _pRNGAlgorithms.ChooseAlgorithm(dicePositionsToRoll.Count);
 
         for (int i = 0; i < dicePositionsToRoll.Count; i++)
         {
             _dice[dicePositionsToRoll[i]] = randomNumbersRolled[i];
-
-            if (_debugLogging) Debug.Log("Dice position " + dicePositionsToRoll[i] + " is being re-rolled.");
-        }
-        
-
-        if (_debugLogging)
-        {
-            Debug.Log("The dice numbers are: " + _dice[0] + " " + _dice[1] + " " + _dice[2] + " " + _dice[3] + " " + _dice[4]);
         }
 
         dice1.gameObject.GetComponent<Image>().color = Color.white;
