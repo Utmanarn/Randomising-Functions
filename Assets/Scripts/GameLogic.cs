@@ -56,22 +56,28 @@ public class GameLogic : MonoBehaviour
         {
             case 6:
                 // ONE PAIR
-                foreach (var dice in _playerHand.DiceList())
+                int score = 0;
+
+                for (int i = 0; i < _playerHand.DiceList().Length; i++)
                 {
-                    if (dice == 1)
+                    for (int j = 0; j < _playerHand.DiceList().Length; j++)
                     {
-                        diceScore += 1;
+                        if (i == j) continue; // We don't want to check a dice with itself.
+                        if (_playerHand.DiceList()[i] != _playerHand.DiceList()[j]) continue;
+
+                        int number = _playerHand.DiceList()[i] + _playerHand.DiceList()[j];
+
+                        score = (number > score) ? number : score;
                     }
                 }
+
+                diceScore = score;
                 break;
             case 7:
                 // TWO PAIRS
                 for (int i = 0; i < _playerHand.DiceList().Length; i++)
                 {
-                    if (_playerHand.DiceListIndex(0) == 1)
-                    {
-
-                    }
+                    
                 }
                 foreach (var dice in _playerHand.DiceList())
                 {
@@ -103,53 +109,95 @@ public class GameLogic : MonoBehaviour
                 break;
             case 10:
                 // SMALL STRAIGHT
+                int smallStraight = 0;
+
                 foreach (var dice in _playerHand.DiceList())
                 {
                     if (dice == 1)
                     {
-                        diceScore += 1;
+                        smallStraight++;
+                    }
+                    else if (dice == 2)
+                    {
+                        smallStraight++;
+                    }
+                    else if (dice == 3)
+                    {
+                        smallStraight++;
+                    }
+                    else if (dice == 4)
+                    {
+                        smallStraight++;
+                    }
+                    else if (dice == 5)
+                    {
+                        smallStraight++;
+                    }
+
+                    if (smallStraight == 5)
+                    {
+                        diceScore += 15;
                     }
                 }
                 break;
             case 11:
                 // LARGE STRAIGHT
+                int largeStraight = 0;
+
                 foreach (var dice in _playerHand.DiceList())
                 {
-                    if (dice == 1)
+                    if (dice == 2)
                     {
-                        diceScore += 1;
+                        largeStraight++;
+                    }
+                    else if (dice == 3)
+                    {
+                        largeStraight++;
+                    }
+                    else if (dice == 4)
+                    {
+                        largeStraight++;
+                    }
+                    else if (dice == 5)
+                    {
+                        largeStraight++;
+                    }
+                    else if (dice == 6)
+                    {
+                        largeStraight++;
+                    }
+
+                    if (largeStraight == 5)
+                    {
+                        diceScore += 20;
                     }
                 }
                 break;
             case 12:
-                // FULL HOUSE
-                foreach (var dice in _playerHand.DiceList())
-                {
-                    if (dice == 1)
-                    {
-                        diceScore += 1;
-                    }
-                }
-                break;
+            // FULL HOUSE
+
             case 13:
                 // CHANCE
                 foreach (var dice in _playerHand.DiceList())
                 {
-                    if (dice == 1)
-                    {
-                        diceScore += 1;
-                    }
+                    diceScore += dice;
                 }
                 break;
             case 14:
                 // YATZY
-                //if (_playerHand.DiceListIndex(0) == _playerHand.DiceListIndex(1) == _playerHand.DiceListIndex(2) == _playerHand.DiceListIndex(3) == _playerHand.DiceListIndex(4))
+                if (_playerHand.DiceListIndex(0) == _playerHand.DiceListIndex(1)
+                    && _playerHand.DiceListIndex(1) == _playerHand.DiceListIndex(2)
+                    && _playerHand.DiceListIndex(2) == _playerHand.DiceListIndex(3)
+                    && _playerHand.DiceListIndex(3) == _playerHand.DiceListIndex(4))
                 {
-
+                    foreach (var dice in _playerHand.DiceList())
+                    {
+                        diceScore += dice;
+                    }
                 }
                 break;
-            }
         }
+    }
 
     public void DebugWriteSelectedToConsole()
     {
