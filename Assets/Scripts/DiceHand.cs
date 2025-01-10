@@ -32,6 +32,9 @@ public class DiceHand : MonoBehaviour
     [SerializeField] private TMP_Text playerOne;
     [SerializeField] private TMP_Text playerTwo;
 
+    [SerializeField] private GameObject playerOneDropdown;
+    [SerializeField] private GameObject playerTwoDropdown;
+
     private void Awake()
     {
         _pRNGAlgorithms = GetComponent<PRNGAlgorithms>();
@@ -48,11 +51,6 @@ public class DiceHand : MonoBehaviour
     public int[] DiceList()
     {
         return _dice;
-    }
-
-    public int[] DiceListIndex(int index)
-    {
-        return _dice[index];
     }
 
     public void Roll()
@@ -85,6 +83,8 @@ public class DiceHand : MonoBehaviour
                 playerOneTurn = false;
                 playerOne.color = Color.white;
                 playerTwo.color = Color.red;
+                playerOneDropdown.SetActive(false);
+                playerTwoDropdown.SetActive(true);
                 Debug.Log("Player Two's Turn");
             } 
             else
@@ -92,6 +92,8 @@ public class DiceHand : MonoBehaviour
                 playerOneTurn = true;
                 playerOne.color = Color.red;
                 playerTwo.color = Color.white;
+                playerOneDropdown.SetActive(true);
+                playerTwoDropdown.SetActive(false);
                 Debug.Log("Player Ones's Turn");
             }
         }
