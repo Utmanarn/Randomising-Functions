@@ -59,6 +59,6 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
 
         _dropdownInstantiater.UpdateDropdownMenu(_listIndex);
 
-        _gameLogic.SelectScore(name);
+        _gameLogic.SelectScore(_listIndex);
     }
 }

@@ -22,9 +22,21 @@ public class DropdownInstantiater : MonoBehaviour
     {
         DropdownItems.Clear();
         _dropdown.ClearOptions();
-        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Option A", defaultColor));
-        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Option B", defaultColor));
-        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Option C", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Ones", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Twos", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Threes", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Fours", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Fives", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Sixes", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("One Pair", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Two Pairs", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Three of a kind", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Four of a kind", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Small Straight", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Large Straight", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Full House", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Chance", defaultColor));
+        DropdownItems.Add(new DropdownOptionsExtender.ColorOptionData("Yatzy", defaultColor));
         _dropdown.AddOptions(DropdownItems);
     }
 
