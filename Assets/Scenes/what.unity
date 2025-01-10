@@ -438,6 +438,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rollButton: {fileID: 1084814630}
   _selectScoreMenu: {fileID: 0}
+  playerOne: {fileID: 1218218836}
+  playerTwo: {fileID: 1924824465}
 --- !u!114 &112661481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,6 +464,8 @@ MonoBehaviour:
   number5: {fileID: 26248593}
   playerOne: {fileID: 1921959936}
   playerTwo: {fileID: 1336564587}
+  playerOneDropdown: {fileID: 994660065}
+  playerTwoDropdown: {fileID: 1192582394}
 --- !u!114 &112661482
 MonoBehaviour:
   m_ObjectHideFlags: 0
