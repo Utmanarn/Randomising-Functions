@@ -3183,13 +3183,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbd01cfec82ec52469e304a36540fd96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _debugLogging: 1
-  _debugTesting: 1
   dice1: {fileID: 0}
   dice2: {fileID: 0}
   dice3: {fileID: 0}
   dice4: {fileID: 0}
   dice5: {fileID: 0}
+  number1: {fileID: 0}
+  number2: {fileID: 0}
+  number3: {fileID: 0}
+  number4: {fileID: 0}
+  number5: {fileID: 0}
+  playerOne: {fileID: 1580562120}
+  playerTwo: {fileID: 1809031975}
 --- !u!114 &2055702392
 MonoBehaviour:
   m_ObjectHideFlags: 0

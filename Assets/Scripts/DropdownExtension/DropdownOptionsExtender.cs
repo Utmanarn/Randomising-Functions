@@ -7,12 +7,15 @@ namespace Assets.Scripts.DropdownExtension
     {
         public class ColorOptionData : TMP_Dropdown.OptionData
         {
-            public ColorOptionData(string text, Color color) : base(text)
-            {
-                Color = color;
-            }
+            public bool Interactable { get; set; }
 
             public Color Color { get; set; }
+
+            public ColorOptionData(string text, Color color, bool interactable = true) : base(text)
+            {
+                Color = color;
+                Interactable = interactable;
+            }
         }
     }
 }

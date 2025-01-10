@@ -55,9 +55,7 @@ public class ClickHandler : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_hasBeenClicked) return; // In case there is some sort of delay between clicking and this menthod being called, it may or may not pool up the clicks and throw them all at once. 
-                                     // This stops that potential problem from doing anything.
-        _hasBeenClicked = true;
+        if (!_toggle.interactable) return;
 
         _dropdownInstantiater.UpdateDropdownMenu(_listIndex);
 

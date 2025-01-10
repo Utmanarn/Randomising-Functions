@@ -28,6 +28,7 @@ namespace Assets.Scripts.DropdownExtension
             if (data is ColorOptionData colorOptionData)
             {
                 image.color = colorOptionData.Color;
+                item.toggle.interactable = colorOptionData.Interactable;
             }
             else
             {
