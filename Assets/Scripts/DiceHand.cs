@@ -45,6 +45,16 @@ public class DiceHand : MonoBehaviour
         Debug.Log("Player Ones's Turn");
     }
 
+    public int[] DiceList()
+    {
+        return _dice;
+    }
+
+    public int[] DiceListIndex(int index)
+    {
+        return _dice[index];
+    }
+
     public void Roll()
     {
         if(numberOfRolls < 3)
