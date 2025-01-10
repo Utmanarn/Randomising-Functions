@@ -46,7 +46,7 @@ public class DropdownInstantiater : MonoBehaviour
     //updated list the other class created. This will cause more garbage for the GC.
     public void UpdateDropdownMenu(int index)
     {
-        DropdownItems[index] = new DropdownOptionsExtender.ColorOptionData("Test!", clickedColor, false);
+        DropdownItems[index] = new DropdownOptionsExtender.ColorOptionData(DropdownItems[index].text, clickedColor, false);
 
         _dropdown.ClearOptions();
         _dropdown.AddOptions(DropdownItems);
