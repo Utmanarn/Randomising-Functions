@@ -267,8 +267,8 @@ public class GameLogic : MonoBehaviour
                 }
                 break;
             case 12:
-            // FULL HOUSE
-
+                // FULL HOUSE
+                break;
             case 13:
                 // CHANCE
                 foreach (var dice in _playerHand.DiceList())
