@@ -9,6 +9,9 @@ public class GameLogic : MonoBehaviour
     [SerializeField] private Button _rollButton;
     [SerializeField] private TMP_Dropdown _selectScoreMenu;
 
+    [SerializeField] private GameObject playerOne;
+    [SerializeField] private GameObject playerTwo;
+
     private bool[] _diceSelected;
 
     private int diceScore;
@@ -33,7 +36,6 @@ public class GameLogic : MonoBehaviour
     public void SelectScore(int itemIndex) // TODO: Change this to use the ClickHandler that was implemented on every item in the dropdown!
     {
         CalculateDices(itemIndex);
-
         Debug.Log(diceScore);
 
         totalScore += diceScore;
@@ -45,6 +47,8 @@ public class GameLogic : MonoBehaviour
         //int value = _selectScoreMenu.value;
 
         //_selectScoreMenu.options.RemoveAt(value);
+
+        ChangeText(itemIndex); 
     }
 
     private void CalculateDices(int itemIndex)
@@ -239,6 +243,143 @@ public class GameLogic : MonoBehaviour
                     }
                 }
                 break;
+        }
+    }
+
+    private void ChangeText(int itemIndex)
+    {
+        if (_playerHand.playerOnesTurn() == true)
+        {
+            switch (itemIndex)
+            {
+                case 0:
+                    Transform ones = playerOne.transform.Find("Ones");
+                    ones.GetComponent<TMP_Text>().text = "Ones: " + diceScore;
+                    break;
+                case 1:
+                    Transform twos = playerOne.transform.Find("Twos");
+                    twos.GetComponent<TMP_Text>().text = "Twos: " + diceScore;
+                    break;
+                case 2:
+                    Transform threes = playerOne.transform.Find("Threes");
+                    threes.GetComponent<TMP_Text>().text = "Threes: " + diceScore;
+                    break;
+                case 3:
+                    Transform fours = playerOne.transform.Find("Fours");
+                    fours.GetComponent<TMP_Text>().text = "Fours: " + diceScore;
+                    break;
+                case 4:
+                    Transform fives = playerOne.transform.Find("Fives");
+                    fives.GetComponent<TMP_Text>().text = "Fives: " + diceScore;
+                    break;
+                case 5:
+                    Transform sixes = playerOne.transform.Find("Sixes");
+                    sixes.GetComponent<TMP_Text>().text = "Sixes: " + diceScore;
+                    break;
+                case 6:
+                    Transform onePair = playerOne.transform.Find("One Pair");
+                    onePair.GetComponent<TMP_Text>().text = "One Pair: " + diceScore;
+                    break;
+                case 7:
+                    Transform twoPairs = playerOne.transform.Find("Two Pairs");
+                    twoPairs.GetComponent<TMP_Text>().text = "Two Pairs: " + diceScore;
+                    break;
+                case 8:
+                    Transform threeofakind = playerOne.transform.Find("Three of a kind");
+                    threeofakind.GetComponent<TMP_Text>().text = "Three of a kind: " + diceScore;
+                    break;
+                case 9:
+                    Transform fourofakind = playerOne.transform.Find("Four of a kind");
+                    fourofakind.GetComponent<TMP_Text>().text = "Four of a kind: " + diceScore;
+                    break;
+                case 10:
+                    Transform smallStraight = playerOne.transform.Find("Small Straight");
+                    smallStraight.GetComponent<TMP_Text>().text = "Small Straight: " + diceScore;
+                    break;
+                case 11:
+                    Transform largeStraight = playerOne.transform.Find("Large Straight");
+                    largeStraight.GetComponent<TMP_Text>().text = "Large Straight: " + diceScore;
+                    break;
+                case 12:
+                    Transform fullHouse = playerOne.transform.Find("Full House");
+                    fullHouse.GetComponent<TMP_Text>().text = "Full House: " + diceScore;
+                    break;
+                case 13:
+                    Transform chance = playerOne.transform.Find("Chance");
+                    chance.GetComponent<TMP_Text>().text = "Chance: " + diceScore;
+                    break;
+                case 14:
+                    Transform yatzy = playerOne.transform.Find("Yatzy");
+                    yatzy.GetComponent<TMP_Text>().text = "Yatzy: " + diceScore;
+                    break;
+            }
+        }
+
+        if (_playerHand.playerOnesTurn() == false)
+        {
+            switch (itemIndex)
+            {
+                case 0:
+                    Transform ones = playerTwo.transform.Find("Ones");
+                    ones.GetComponent<TMP_Text>().text = "Ones: " + diceScore;
+                    break;
+                case 1:
+                    Transform twos = playerTwo.transform.Find("Twos");
+                    twos.GetComponent<TMP_Text>().text = "Twos: " + diceScore;
+                    break;
+                case 2:
+                    Transform threes = playerTwo.transform.Find("Threes");
+                    threes.GetComponent<TMP_Text>().text = "Threes: " + diceScore;
+                    break;
+                case 3:
+                    Transform fours = playerTwo.transform.Find("Fours");
+                    fours.GetComponent<TMP_Text>().text = "Fours: " + diceScore;
+                    break;
+                case 4:
+                    Transform fives = playerTwo.transform.Find("Fives");
+                    fives.GetComponent<TMP_Text>().text = "Fives: " + diceScore;
+                    break;
+                case 5:
+                    Transform sixes = playerTwo.transform.Find("Sixes");
+                    sixes.GetComponent<TMP_Text>().text = "Sixes: " + diceScore;
+                    break;
+                case 6:
+                    Transform onePair = playerTwo.transform.Find("One Pair");
+                    onePair.GetComponent<TMP_Text>().text = "One Pair: " + diceScore;
+                    break;
+                case 7:
+                    Transform twoPairs = playerTwo.transform.Find("Two Pairs");
+                    twoPairs.GetComponent<TMP_Text>().text = "Two Pairs: " + diceScore;
+                    break;
+                case 8:
+                    Transform threeofakind = playerTwo.transform.Find("Three of a kind");
+                    threeofakind.GetComponent<TMP_Text>().text = "Three of a kind: " + diceScore;
+                    break;
+                case 9:
+                    Transform fourofakind = playerTwo.transform.Find("Four of a kind");
+                    fourofakind.GetComponent<TMP_Text>().text = "Four of a kind: " + diceScore;
+                    break;
+                case 10:
+                    Transform smallStraight = playerTwo.transform.Find("Small Straight");
+                    smallStraight.GetComponent<TMP_Text>().text = "Small Straight: " + diceScore;
+                    break;
+                case 11:
+                    Transform largeStraight = playerTwo.transform.Find("Large Straight");
+                    largeStraight.GetComponent<TMP_Text>().text = "Large Straight: " + diceScore;
+                    break;
+                case 12:
+                    Transform fullHouse = playerTwo.transform.Find("Full House");
+                    fullHouse.GetComponent<TMP_Text>().text = "Full House: " + diceScore;
+                    break;
+                case 13:
+                    Transform chance = playerTwo.transform.Find("Chance");
+                    chance.GetComponent<TMP_Text>().text = "Chance: " + diceScore;
+                    break;
+                case 14:
+                    Transform yatzy = playerTwo.transform.Find("Yatzy");
+                    yatzy.GetComponent<TMP_Text>().text = "Yatzy: " + diceScore;
+                    break;
+            }
         }
     }
 
