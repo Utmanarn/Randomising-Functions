@@ -53,6 +53,11 @@ public class DiceHand : MonoBehaviour
         return _dice;
     }
 
+    public bool playerOnesTurn()
+    {
+        return playerOneTurn;
+    }
+
     public void Roll()
     {
         if(numberOfRolls < 3)
