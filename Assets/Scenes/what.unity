@@ -438,8 +438,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rollButton: {fileID: 1084814630}
   _selectScoreMenu: {fileID: 0}
+  playerOneScore: {fileID: 985241703}
+  playerTwoScore: {fileID: 1655345448}
   playerOne: {fileID: 1218218836}
   playerTwo: {fileID: 1924824465}
+  playerOneText: {fileID: 1921959936}
+  playerTwoText: {fileID: 1336564587}
+  playerOneDropdown: {fileID: 994660065}
+  playerTwoDropdown: {fileID: 1192582394}
 --- !u!114 &112661481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,10 +468,7 @@ MonoBehaviour:
   number3: {fileID: 1213890388}
   number4: {fileID: 1240841204}
   number5: {fileID: 26248593}
-  playerOne: {fileID: 1921959936}
-  playerTwo: {fileID: 1336564587}
-  playerOneDropdown: {fileID: 994660065}
-  playerTwoDropdown: {fileID: 1192582394}
+  rollButton: {fileID: 1084814630}
 --- !u!114 &112661482
 MonoBehaviour:
   m_ObjectHideFlags: 0

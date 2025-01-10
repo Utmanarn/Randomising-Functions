@@ -2,25 +2,42 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Net.Http;
+using Unity.VisualScripting;
 
 public class GameLogic : MonoBehaviour
 {
     private DiceHand _playerHand;
+    private bool playerOneTurn;
+
     [SerializeField] private Button _rollButton;
     [SerializeField] private TMP_Dropdown _selectScoreMenu;
+
+    [SerializeField] private TMP_Text playerOneScore;
+    [SerializeField] private TMP_Text playerTwoScore;
 
     [SerializeField] private GameObject playerOne;
     [SerializeField] private GameObject playerTwo;
 
+    [SerializeField] private TMP_Text playerOneText;
+    [SerializeField] private TMP_Text playerTwoText;
+
+    [SerializeField] private GameObject playerOneDropdown;
+    [SerializeField] private GameObject playerTwoDropdown;
+
     private bool[] _diceSelected;
 
     private int diceScore;
-    private int totalScore;
+    private int oneTotalScore;
+    private int twoTotalScore;
 
     private void Awake()
     {
         _playerHand = GetComponent<DiceHand>();
         _diceSelected = new bool[5];
+
+        playerOneTurn = true;
+        playerOneText.color = Color.red;
+        Debug.Log("Player Ones's Turn");
     }
 
     public void Roll()
@@ -38,17 +55,46 @@ public class GameLogic : MonoBehaviour
         CalculateDices(itemIndex);
         Debug.Log(diceScore);
 
-        totalScore += diceScore;
-
-        // TODO: Write out the dice score and the total score to the currently players score list!
-
-        diceScore = 0;
-
         //int value = _selectScoreMenu.value;
 
         //_selectScoreMenu.options.RemoveAt(value);
+        
+        _playerHand.NumberOfRolls = 3;
 
-        ChangeText(itemIndex); 
+        _rollButton.interactable = true;
+
+        ChangeText(itemIndex);
+
+        if (playerOneTurn == true)
+        {
+            oneTotalScore += diceScore;
+            playerOneScore.text = "Score: " + oneTotalScore;
+            
+
+            playerOneTurn = false;
+            playerOneText.color = Color.white;
+            playerTwoText.color = Color.red;
+            playerOneDropdown.SetActive(false);
+            playerTwoDropdown.SetActive(true);
+            Debug.Log("Player Two's Turn");
+        }
+        else
+        {
+            twoTotalScore += diceScore;
+            playerTwoScore.text = "Score: " + twoTotalScore;
+
+            playerOneTurn = true;
+            playerOneText.color = Color.red;
+            playerTwoText.color = Color.white;
+            playerOneDropdown.SetActive(true);
+            playerTwoDropdown.SetActive(false);
+            Debug.Log("Player Ones's Turn");
+        }
+
+        Debug.Log(playerOneTurn);
+
+        diceScore = 0;
+
     }
 
     private void CalculateDices(int itemIndex)
@@ -248,7 +294,7 @@ public class GameLogic : MonoBehaviour
 
     private void ChangeText(int itemIndex)
     {
-        if (_playerHand.playerOnesTurn() == true)
+        if (playerOneTurn == true)
         {
             switch (itemIndex)
             {
@@ -315,7 +361,7 @@ public class GameLogic : MonoBehaviour
             }
         }
 
-        if (_playerHand.playerOnesTurn() == false)
+        if (playerOneTurn == false)
         {
             switch (itemIndex)
             {

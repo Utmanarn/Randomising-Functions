@@ -6,16 +6,15 @@ using UnityEngine.EventSystems;
 using Unity.UI;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class DiceHand : MonoBehaviour
 {
     private PRNGAlgorithms _pRNGAlgorithms;
     private int[] _dice;
     private List<int> reRoll;
-    private int numberOfRolls;
 
-    private bool playerOneTurn;
-
+    [NonSerialized] public int NumberOfRolls;
 
     [SerializeField] private Button dice1;
     [SerializeField] private Button dice2;
@@ -29,11 +28,7 @@ public class DiceHand : MonoBehaviour
     [SerializeField] private TMP_Text number4;
     [SerializeField] private TMP_Text number5;
 
-    [SerializeField] private TMP_Text playerOne;
-    [SerializeField] private TMP_Text playerTwo;
-
-    [SerializeField] private GameObject playerOneDropdown;
-    [SerializeField] private GameObject playerTwoDropdown;
+    [SerializeField] private Button rollButton;
 
     private void Awake()
     {
@@ -41,11 +36,7 @@ public class DiceHand : MonoBehaviour
 
         _dice = new int[5];
         reRoll = new List<int>();
-        numberOfRolls = 3;
-
-        playerOneTurn = true;
-        playerOne.color = Color.red;
-        Debug.Log("Player Ones's Turn");
+        NumberOfRolls = 3;
     }
 
     public int[] DiceList()
@@ -53,17 +44,12 @@ public class DiceHand : MonoBehaviour
         return _dice;
     }
 
-    public bool playerOnesTurn()
-    {
-        return playerOneTurn;
-    }
-
     public void Roll()
     {
-        if(numberOfRolls < 3)
+        if (NumberOfRolls < 3)
         {
             RollSelectedDice(reRoll);
-        } 
+        }
         else
         {
             RollAllDice();
@@ -77,30 +63,11 @@ public class DiceHand : MonoBehaviour
 
         Debug.Log("Dice Rolled: " + _dice[0] + " " + _dice[1] + " " + _dice[2] + " " + _dice[3] + " " + _dice[4]);
 
-        numberOfRolls--;
+        NumberOfRolls--;
 
-        if(numberOfRolls < 1)
+        if (NumberOfRolls < 1)
         {
-            numberOfRolls = 3;
-
-            if(playerOneTurn == true)
-            {
-                playerOneTurn = false;
-                playerOne.color = Color.white;
-                playerTwo.color = Color.red;
-                playerOneDropdown.SetActive(false);
-                playerTwoDropdown.SetActive(true);
-                Debug.Log("Player Two's Turn");
-            } 
-            else
-            {
-                playerOneTurn = true;
-                playerOne.color = Color.red;
-                playerTwo.color = Color.white;
-                playerOneDropdown.SetActive(true);
-                playerTwoDropdown.SetActive(false);
-                Debug.Log("Player Ones's Turn");
-            }
+            rollButton.interactable = false;
         }
     }
 
