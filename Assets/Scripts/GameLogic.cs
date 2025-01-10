@@ -33,7 +33,15 @@ public class GameLogic : MonoBehaviour
     public void SelectScore(int itemIndex) // TODO: Change this to use the ClickHandler that was implemented on every item in the dropdown!
     {
         CalculateDices(itemIndex);
-      
+
+        Debug.Log(diceScore);
+
+        totalScore += diceScore;
+
+        // TODO: Write out the dice score and the total score to the currently players score list!
+
+        diceScore = 0;
+
         //int value = _selectScoreMenu.value;
 
         //_selectScoreMenu.options.RemoveAt(value);
@@ -75,17 +83,52 @@ public class GameLogic : MonoBehaviour
                 break;
             case 7:
                 // TWO PAIRS
+                score = 0;
+                int secondScore = 0;
+                int checkedDice1 = -1, checkedDice2 = -1;
+
                 for (int i = 0; i < _playerHand.DiceList().Length; i++)
                 {
-                    
-                }
-                foreach (var dice in _playerHand.DiceList())
-                {
-                    if (dice == 1)
+                    for (int j = 0; j < _playerHand.DiceList().Length; j++)
                     {
-                        diceScore += 1;
+                        if (i == j) continue; // We don't want to check a dice with itself.
+                        if (_playerHand.DiceList()[i] != _playerHand.DiceList()[j]) continue;
+
+                        int number = _playerHand.DiceList()[i] + _playerHand.DiceList()[j];
+
+                        if (number > score)
+                        {
+                            checkedDice1 = i;
+                            checkedDice2 = j;
+
+                            score = number;
+                        }
                     }
                 }
+
+                for (int i = 0; i < _playerHand.DiceList().Length; i++)
+                {
+                    for (int j = 0; j < _playerHand.DiceList().Length; j++)
+                    {
+                        if (i == j || i == checkedDice1 || i == checkedDice2 || j == checkedDice1 || j == checkedDice2) continue; // We don't want to check a dice with itself.
+                        if (_playerHand.DiceList()[i] != _playerHand.DiceList()[j]) continue;
+
+                        int number = _playerHand.DiceList()[i] + _playerHand.DiceList()[j];
+
+                        if (number > secondScore)
+                        {
+                            secondScore = number;
+                        }
+                    }
+                }
+
+                if (score <= 0 || secondScore <= 0) 
+                { 
+                    diceScore = 0;
+                    return;
+                }
+
+                diceScore = score + secondScore;
                 break;
             case 8:
                 // THREE OF A KIND
@@ -185,10 +228,10 @@ public class GameLogic : MonoBehaviour
                 break;
             case 14:
                 // YATZY
-                if (_playerHand.DiceListIndex(0) == _playerHand.DiceListIndex(1)
-                    && _playerHand.DiceListIndex(1) == _playerHand.DiceListIndex(2)
-                    && _playerHand.DiceListIndex(2) == _playerHand.DiceListIndex(3)
-                    && _playerHand.DiceListIndex(3) == _playerHand.DiceListIndex(4))
+                if (_playerHand.DiceList()[0] == _playerHand.DiceList()[1]
+                    && _playerHand.DiceList()[1] == _playerHand.DiceList()[2]
+                    && _playerHand.DiceList()[2] == _playerHand.DiceList()[3]
+                    && _playerHand.DiceList()[3] == _playerHand.DiceList()[4])
                 {
                     foreach (var dice in _playerHand.DiceList())
                     {
